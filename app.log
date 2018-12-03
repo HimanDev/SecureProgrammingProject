@@ -1,0 +1,13 @@
+2018-10-30 03:02:52 INFO  ConfigTest:11 - Test Log
+2018-12-01 14:03:14 INFO  JdbcConnectionTest:15 - Test Log
+2018-12-01 14:03:55 INFO  JdbcConnectionTest:15 - Test Log
+2018-12-01 14:03:55 INFO  ConfigTest:11 - Test Log
+2018-12-01 14:05:21 INFO  JdbcConnectionTest:15 - Test Log
+2018-12-01 14:05:21 INFO  ConfigTest:11 - Test Log
+2018-12-01 14:06:12 INFO  JdbcConnectionTest:15 - Test Log
+2018-12-02 15:54:33 INFO  JdbcConnectionTest:17 - Test Log
+2018-12-02 15:58:13 INFO  JdbcConnectionTest:17 - Test Log
+2018-12-02 15:58:19 INFO  JdbcConnectionTest:17 - Test Log
+2018-12-02 15:58:45 INFO  JdbcConnectionTest:17 - Test Log
+2018-12-02 19:08:05 INFO  JdbcConnectionTest:27 - Test Log
+2018-12-02 19:08:05 INFO  ConfigTest:11 - Test Log

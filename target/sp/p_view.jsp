@@ -84,7 +84,7 @@
 						</div>
 					</div>
 					<input type="hidden" value="" name="sid" id="sid">
-				<input type="hidden" value="" name="ssid" id="ssid">
+				<input type="hidden" value="" name="ssid" id="ssId">
 				<input type="hidden" value="${param.psid}" name="psid">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>

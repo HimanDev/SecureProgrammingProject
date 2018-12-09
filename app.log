@@ -1,26 +1,3 @@
-2018-10-30 03:02:52 INFO  ConfigTest:11 - Test Log
-2018-12-01 14:03:14 INFO  JdbcConnectionTest:15 - Test Log
-2018-12-01 14:03:55 INFO  JdbcConnectionTest:15 - Test Log
-2018-12-01 14:03:55 INFO  ConfigTest:11 - Test Log
-2018-12-01 14:05:21 INFO  JdbcConnectionTest:15 - Test Log
-2018-12-01 14:05:21 INFO  ConfigTest:11 - Test Log
-2018-12-01 14:06:12 INFO  JdbcConnectionTest:15 - Test Log
-2018-12-02 15:54:33 INFO  JdbcConnectionTest:17 - Test Log
-2018-12-02 15:58:13 INFO  JdbcConnectionTest:17 - Test Log
-2018-12-02 15:58:19 INFO  JdbcConnectionTest:17 - Test Log
-2018-12-02 15:58:45 INFO  JdbcConnectionTest:17 - Test Log
-2018-12-02 19:08:05 INFO  JdbcConnectionTest:27 - Test Log
-2018-12-02 19:08:05 INFO  ConfigTest:11 - Test Log
-2018-12-08 17:57:52 INFO  ConfigTest:11 - Test Log
-2018-12-08 17:58:47 INFO  ConfigTest:11 - Test Log
-2018-12-08 20:38:43 ERROR JdbcConnection:80 - java.sql.SQLException: Parameter index out of range (3 > number of parameters, which is 2).
-2018-12-08 20:39:00 ERROR JdbcConnection:80 - java.sql.SQLException: Parameter index out of range (3 > number of parameters, which is 2).
-2018-12-09 01:06:45 ERROR JdbcConnection:80 - java.lang.NullPointerException
-2018-12-09 01:06:45 INFO  ConfigTest:11 - Test Log
-2018-12-09 01:07:06 INFO  ConfigTest:11 - Test Log
-2018-12-09 01:07:41 INFO  ConfigTest:11 - Test Log
-2018-12-09 01:10:10 INFO  ConfigTest:11 - Test Log
-2018-12-09 01:12:23 INFO  ConfigTest:11 - Test Log
-2018-12-09 01:15:53 INFO  ConfigTest:11 - Test Log
-2018-12-09 01:20:44 INFO  ConfigTest:11 - Test Log
-2018-12-09 02:23:33 INFO  ConfigTest:11 - Test Log
+2018-12-09 14:26:34 INFO  ConfigTest:11 - Test Log
+2018-12-09 15:58:07 INFO  ConfigTest:11 - Test Log
+2018-12-09 17:40:24 INFO  ConfigTest:11 - Test Log

@@ -72,19 +72,19 @@ public class ProfessorContrller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("update user grade");
 		HttpSession session = request.getSession();
 		if (session.getAttribute(Constants.SP_USERNAME) != null
 				&& Constants.SP_USERTYPE_PROFESSOR.equals(session.getAttribute(Constants.SP_USERTYPE))) {
 			ProfessorDao dao = new ProfessorDao();
 			Integer profID = new Integer(session.getAttribute(Constants.SP_USERID).toString());
-			String id = request.getParameter("sid");
+			String id = request.getParameter("ssid");
 			String psid = request.getParameter("psid");
 			String grade = request.getParameter("grade");
 			if(id.matches("^[0-9]+$") &&
-					grade.matches("^[A-D]{1}$")) {
-				int sid = Integer.parseInt(id);
-				new UserDao().updateGrade(sid, profID, grade);
+					grade.matches("^[A-F]{1}$")) {
+				int ssid = Integer.parseInt(id);
+				new UserDao().updateGrade(ssid, profID, grade);
+				LOG.info("grade updated for studentid "+ssid+" by professor id "+profID);
 				response.sendRedirect("/sp/professor/grades?psid="+psid);
 
 			}

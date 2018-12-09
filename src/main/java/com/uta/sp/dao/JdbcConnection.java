@@ -88,15 +88,16 @@ public abstract class JdbcConnection<T> {
 		createConnection();
 		PreparedStatement statement;
 		ResultSet resultSet = null;
+		List<Map<String, Object>> resultSetToArrayList=null;
 		try {
 
 			statement = connection.prepareStatement(query);
 			resultSet = statement.executeQuery();
+			resultSetToArrayList = resultSetToArrayList(resultSet);
 
 		} catch (SQLException e) {
 			LOGGER.error(e);
 		}
-		List<Map<String, Object>> resultSetToArrayList = resultSetToArrayList(resultSet);
 		closeConnection();
 		return resultSetToArrayList;
 	}

@@ -68,7 +68,7 @@ public class UserDao extends JdbcConnection<User> {
 	public int updateGrade(int sid, int pid, String grade) {
 		String query = "UPDATE student_subject INNER JOIN professor_subject \n"
 				+ "       ON student_subject.professor_subject_id=professor_subject.professor_subject_id\n"
-				+ "SET GRADE = ?  WHERE student_subject.student_subject_id=? and professor_subject.professor_subject_id=?";
+				+ "SET GRADE = ?  WHERE student_subject.student_subject_id=? and professor_subject.professor_id=?";
 		return update(query, new Object[] { grade, sid, pid });
 	}
 

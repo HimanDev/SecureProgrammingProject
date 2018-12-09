@@ -1,13 +1,10 @@
 package com.uta.sp.dto;
 
-import java.security.SecureRandom;
-
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.log4j.Logger;
 
 public class User {
 
@@ -89,11 +86,7 @@ public class User {
 		return hashOfInput.equals(saltAndHash[1]);
 	}
 
-	private String getSaltedHash(String password) throws Exception {
-		byte[] salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLen);
-		// store the salt with the password
-		return Base64.encodeBase64String(salt) + "$" + hash(password, salt);
-	}
+
 
 	private String hash(String password, byte[] salt) throws Exception {
 		if (password == null || password.length() == 0)

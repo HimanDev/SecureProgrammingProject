@@ -11,6 +11,7 @@
 /Users/hsingh/eclipse-workspace/sp/src/main/java/com/uta/sp/helper/Constants.java
 /Users/hsingh/eclipse-workspace/sp/src/main/java/com/uta/sp/controller/SPFilter.java
 /Users/hsingh/eclipse-workspace/sp/src/main/java/com/uta/sp/controller/UserController.java
+/Users/hsingh/eclipse-workspace/sp/src/main/java/com/uta/sp/controller/ErrorHandler.java
 /Users/hsingh/eclipse-workspace/sp/src/main/java/com/uta/sp/helper/package-info.java
 /Users/hsingh/eclipse-workspace/sp/src/main/java/com/uta/sp/controller/LogoutController.java
 /Users/hsingh/eclipse-workspace/sp/src/main/java/com/uta/sp/dto/package-info.java

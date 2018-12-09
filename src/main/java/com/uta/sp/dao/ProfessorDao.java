@@ -46,7 +46,6 @@ public class ProfessorDao extends JdbcConnection<Professor> {
 			closeConnection();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			LOG.error(e.getMessage());
 		}
 

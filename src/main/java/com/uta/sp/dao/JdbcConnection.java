@@ -18,8 +18,8 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 public abstract class JdbcConnection<T> {
-	
-	private static final Logger LOGGER=Logger.getLogger(JdbcConnection.class);
+
+	private static final Logger LOGGER = Logger.getLogger(JdbcConnection.class);
 
 	protected Connection connection;
 
@@ -33,13 +33,13 @@ public abstract class JdbcConnection<T> {
 					properties.getProperty("user"), properties.getProperty("password"));
 			System.out.println("Connection Successful");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 
 	}
@@ -49,7 +49,7 @@ public abstract class JdbcConnection<T> {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				LOGGER.error(e);
 			}
 		}
 	}
@@ -59,23 +59,23 @@ public abstract class JdbcConnection<T> {
 	abstract int update(T t);
 
 	abstract T getOne(T t);
-	
-	protected int update(String query,Object[] data) {
+
+	protected int update(String query, Object[] data) {
 		createConnection();
 		PreparedStatement preparedStatement;
-		int i=0;
+		int i = 0;
 		try {
-			preparedStatement=connection.prepareStatement(query);
+			preparedStatement = connection.prepareStatement(query);
 			for (int j = 0; j < data.length; j++) {
 				Object object = data[j];
-				if(object instanceof Integer) {
-					preparedStatement.setInt(j+1, ((Integer)object));
-				}else if (object instanceof String) {
-					preparedStatement.setString(j+1, object.toString());
-				} 
-				
+				if (object instanceof Integer) {
+					preparedStatement.setInt(j + 1, ((Integer) object));
+				} else if (object instanceof String) {
+					preparedStatement.setString(j + 1, object.toString());
+				}
+
 			}
-			i=preparedStatement.executeUpdate();
+			i = preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			LOGGER.error(e);
 		}
@@ -94,7 +94,7 @@ public abstract class JdbcConnection<T> {
 			resultSet = statement.executeQuery();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		List<Map<String, Object>> resultSetToArrayList = resultSetToArrayList(resultSet);
 		closeConnection();
@@ -115,10 +115,8 @@ public abstract class JdbcConnection<T> {
 				list.add(row);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
-	
 
 		return list;
 	}

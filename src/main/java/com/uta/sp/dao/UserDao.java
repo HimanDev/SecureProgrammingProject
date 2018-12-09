@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import com.uta.sp.dto.User;
 
 public class UserDao extends JdbcConnection<User> {
-	
+
 	private static final Logger LOG = Logger.getLogger(UserDao.class);
 
 	@Override
@@ -21,17 +21,17 @@ public class UserDao extends JdbcConnection<User> {
 
 	@Override
 	public int update(User t) {
-		PreparedStatement statement=null;
-		int i=0;
+		PreparedStatement statement = null;
+		int i = 0;
 		try {
 			createConnection();
-			statement=connection.prepareStatement("update user set LOGIN_ATTEMPTS=? where name=?");
+			statement = connection.prepareStatement("update user set LOGIN_ATTEMPTS=? where name=?");
 			statement.setInt(1, t.getLoginAttepmts());
 			statement.setString(2, t.getUserName());
-			i=statement.executeUpdate();
+			i = statement.executeUpdate();
 			closeConnection();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e.getMessage());
 		}
 		return i;
 	}
@@ -59,19 +59,17 @@ public class UserDao extends JdbcConnection<User> {
 			closeConnection();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOG.error(e.getMessage());
 		}
 
 		return user;
 	}
-	
-	public int updateGrade(int sid,int pid,String grade) {
-		String query="UPDATE student_subject INNER JOIN professor_subject \n" + 
-				"       ON student_subject.professor_subject_id=professor_subject.professor_subject_id\n" + 
-				"SET GRADE = ?  WHERE student_subject.student_subject_id=? and professor_subject.professor_subject_id=?";
-		return update(query, new Object[] {grade,sid,pid});
+
+	public int updateGrade(int sid, int pid, String grade) {
+		String query = "UPDATE student_subject INNER JOIN professor_subject \n"
+				+ "       ON student_subject.professor_subject_id=professor_subject.professor_subject_id\n"
+				+ "SET GRADE = ?  WHERE student_subject.student_subject_id=? and professor_subject.professor_subject_id=?";
+		return update(query, new Object[] { grade, sid, pid });
 	}
-	
-	
 
 }

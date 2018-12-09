@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.uta.sp.dao.ProfessorDao;
 import com.uta.sp.dao.StudentDao;
 import com.uta.sp.dao.UserDao;
@@ -23,6 +25,8 @@ import com.uta.sp.helper.Helper;
  */
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG=Logger.getLogger(SPFilter.class);
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -48,19 +52,22 @@ public class UserController extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			User clientUser = (User) Helper.getJavaObject(request, User.class);
-			System.out.println(clientUser);
 			UserDao userDao = new UserDao();
 			User dbUser = userDao.getOne(clientUser);
 			if (dbUser == null) {
+				LOG.error("invalid login request from ip-address => "+request.getRemoteAddr());
 				request.setAttribute("error", "username or password incorrect");
 			} else if (dbUser.getLoginAttepmts() > 3) {
+				LOG.error(dbUser.getLoginAttepmts() +" no of failed login attempt => "+request.getRemoteAddr());
 				request.setAttribute("error", "maximus limit exceeded, please contact admin");
 			} else if (!dbUser.check(clientUser)) {
+				LOG.error("invalid login request for "+clientUser.getUserName()+" from ip-address => "+request.getRemoteAddr());
 				dbUser.setLoginAttepmts(dbUser.getLoginAttepmts() + 1);
 				userDao.update(dbUser);
 				request.setAttribute("error", "username or password incorrect");
 
 			} else {
+				LOG.info("successfull login request for "+clientUser.getUserName()+" from ip-address => "+request.getRemoteAddr());
 				dbUser.setLoginAttepmts(0);
 				userDao.update(dbUser);
 				request.setAttribute("error", "login successful");

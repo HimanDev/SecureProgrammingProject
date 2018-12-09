@@ -34,6 +34,12 @@
 		<description></description>
 		<servlet-class>com.uta.sp.controller.StudentController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ErrorHandler</servlet-name>
+		<display-name>ErrorHandler</display-name>
+		<description></description>
+		<servlet-class>com.uta.sp.controller.ErrorHandler</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Test</servlet-name>
 		<url-pattern>/test</url-pattern>
@@ -54,6 +60,20 @@
 		<servlet-name>StudentController</servlet-name>
 		<url-pattern>/student/*</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ErrorHandler</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/error</location>
+	</error-page>
+
 	<filter>
 		<filter-name>myFilter</filter-name>
 		<filter-class>com.uta.sp.controller.SPFilter</filter-class>

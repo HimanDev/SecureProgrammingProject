@@ -39,7 +39,6 @@ public class ProfessorContrller extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String path = request.getRequestURI().substring(request.getContextPath().length());
-		LOG.info(path);
 		if ("/professor/dashboard".equals(path)) {
 			if (session.getAttribute(Constants.SP_USERNAME) != null
 					&& Constants.SP_USERTYPE_PROFESSOR.equals(session.getAttribute(Constants.SP_USERTYPE))) {

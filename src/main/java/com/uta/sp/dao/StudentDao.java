@@ -47,7 +47,6 @@ public class StudentDao extends JdbcConnection<Student> {
 			closeConnection();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			LOG.error(e.getMessage());
 		}
 

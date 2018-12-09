@@ -11,6 +11,6 @@ public class Constants {
 	public static final Object SP_USERTYPE_PROFESSOR = "P";
 	public static final Object SP_USERTYPE_STUDENT = "S";
 	
-	public static final List<String> ALLOWED_URLS=Arrays.asList("/","/index.jsp","/verify");
+	public static final List<String> ALLOWED_URLS=Arrays.asList("/","/index.jsp","/verify","/error","/error.html");
 
 }

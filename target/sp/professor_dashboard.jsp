@@ -15,18 +15,17 @@
 		<nav class="navbar navbar-light bg-light justify-content-between">
 			<a class="navbar-brand">Welcome Professor <c:out value="${sessionScope.SP_USERNAME}" /></a>
 			<form class="form-inline">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/sp/logout">Logout</a></button>
 			</form>
 		</nav>
 		<br><br>
 		<div class="row">
 		<c:forEach items="${data}" var="element">
-		${element }
 				<div class="card" style="width: 18rem;">
 					<div class="card-body">
 						<h5 class="card-title"><c:out value="${element.NAME }"></c:out></h5><br>
-						<p class="card-text"><c:out value="${element}"></c:out></p>
-						<a href="#" class="btn btn-primary">View subjects</a>
+						<p class="card-text"><c:out value="${element.SUB_NAME}"></c:out></p>
+						<a href="/sp/professor/grades?psid=${element.PSID}" class="btn btn-primary">View Grades</a>
 					</div>
 				</div>
 				

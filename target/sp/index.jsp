@@ -27,8 +27,7 @@
 				type="password" name="password" required="required" value="${password }" class="form-control"
 				id="exampleInputPassword1" placeholder="Password">
 		</div>
-		<input type="radio" required="required" name="userType" value="Student">&nbsp;&nbsp;Student&nbsp;&nbsp;&nbsp;<input
-			type="radio" name="userType" value="Professor">&nbsp;&nbsp;Professor <br>
+		
 		<br>
 
 		<button type="submit" class="btn btn-primary">Submit</button>

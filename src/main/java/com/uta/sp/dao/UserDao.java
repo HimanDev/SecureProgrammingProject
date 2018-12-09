@@ -3,10 +3,16 @@ package com.uta.sp.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import com.uta.sp.dto.User;
 
 public class UserDao extends JdbcConnection<User> {
+	
+	private static final Logger LOG = Logger.getLogger(UserDao.class);
 
 	@Override
 	int save(User t) {
@@ -47,6 +53,8 @@ public class UserDao extends JdbcConnection<User> {
 				user.setPassword(resultSet.getString("PASSWORD"));
 				user.setLoginAttepmts(resultSet.getInt("LOGIN_ATTEMPTS"));
 				user.setRoleId(resultSet.getInt("ROLE_ID"));
+				user.setStudentId(resultSet.getInt("STUDENT_ID"));
+				user.setProfessorId(resultSet.getInt("PROFESSOR_ID"));
 			}
 			closeConnection();
 
@@ -56,5 +64,14 @@ public class UserDao extends JdbcConnection<User> {
 
 		return user;
 	}
+	
+	public int updateGrade(int sid,int pid,String grade) {
+		String query="UPDATE student_subject INNER JOIN professor_subject \n" + 
+				"       ON student_subject.professor_subject_id=professor_subject.professor_subject_id\n" + 
+				"SET GRADE = ?  WHERE student_subject.student_subject_id=? and professor_subject.professor_subject_id=?";
+		return update(query, new Object[] {grade,sid,pid});
+	}
+	
+	
 
 }

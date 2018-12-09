@@ -15,11 +15,11 @@ public class User {
 	public String toString() {
 		return "User [userID=" + userID + ", roleId=" + roleId + ", professorId=" + professorId + ", studentId="
 				+ studentId + ", loginAttepmts=" + loginAttepmts + ", userName=" + userName + ", password=" + password
-				+ ", userType=" + userType + "]";
+				+ "]";
 	}
 
 	private int userID, roleId, professorId, studentId, loginAttepmts;
-	private String userName, password, userType;
+	private String userName, password;
 	private static final int iterations = 20 * 1000;
 	private static final int saltLen = 32;
 	private static final int desiredKeyLen = 256;
@@ -78,14 +78,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
 	}
 
 	public boolean check(User clientUserObject) throws Exception {

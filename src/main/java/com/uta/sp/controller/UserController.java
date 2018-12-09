@@ -7,9 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.uta.sp.dao.ProfessorDao;
+import com.uta.sp.dao.StudentDao;
 import com.uta.sp.dao.UserDao;
+import com.uta.sp.dto.Professor;
+import com.uta.sp.dto.Student;
 import com.uta.sp.dto.User;
+import com.uta.sp.helper.Constants;
 import com.uta.sp.helper.Helper;
 
 /**
@@ -42,6 +48,7 @@ public class UserController extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			User clientUser = (User) Helper.getJavaObject(request, User.class);
+			System.out.println(clientUser);
 			UserDao userDao = new UserDao();
 			User dbUser = userDao.getOne(clientUser);
 			if (dbUser == null) {
@@ -57,6 +64,28 @@ public class UserController extends HttpServlet {
 				dbUser.setLoginAttepmts(0);
 				userDao.update(dbUser);
 				request.setAttribute("error", "login successful");
+				if(dbUser.getProfessorId()!=0) {
+					Professor professor=new Professor();
+					professor.setProfessorId(dbUser.getProfessorId());
+					professor = new ProfessorDao().getOne(professor);
+					HttpSession session = request.getSession();
+					
+					session.setAttribute(Constants.SP_USERNAME, professor.getName());
+					session.setAttribute(Constants.SP_USERID, professor.getProfessorId());
+					session.setAttribute(Constants.SP_USERTYPE, Constants.SP_USERTYPE_PROFESSOR);
+					response.sendRedirect(request.getContextPath()+"/professor/dashboard");
+				}else if(dbUser.getStudentId()!=0) {
+					Student student=new Student();
+					student.setStudentId(dbUser.getStudentId());
+					student = new StudentDao().getOne(student);
+					HttpSession session = request.getSession();
+					
+					session.setAttribute(Constants.SP_USERNAME, student.getName());
+					session.setAttribute(Constants.SP_USERID, student.getStudentId());
+					session.setAttribute(Constants.SP_USERTYPE, Constants.SP_USERTYPE_STUDENT);
+					response.sendRedirect(request.getContextPath()+"/student/dashboard");
+				}
+				
 			}
 			request.setAttribute("userName", clientUser.getUserName());
 			request.setAttribute("password", clientUser.getPassword());

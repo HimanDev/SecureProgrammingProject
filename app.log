@@ -11,3 +11,7 @@
 2018-12-02 15:58:45 INFO  JdbcConnectionTest:17 - Test Log
 2018-12-02 19:08:05 INFO  JdbcConnectionTest:27 - Test Log
 2018-12-02 19:08:05 INFO  ConfigTest:11 - Test Log
+2018-12-08 17:57:52 INFO  ConfigTest:11 - Test Log
+2018-12-08 17:58:47 INFO  ConfigTest:11 - Test Log
+2018-12-08 20:38:43 ERROR JdbcConnection:80 - java.sql.SQLException: Parameter index out of range (3 > number of parameters, which is 2).
+2018-12-08 20:39:00 ERROR JdbcConnection:80 - java.sql.SQLException: Parameter index out of range (3 > number of parameters, which is 2).

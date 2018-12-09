@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -9,32 +11,32 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <body>
-	<form method="post" action="UserController/verify"
-		style="width: 400px; position: margin 0 auto;">
+	<form method="post" action="/sp/verify"
+		style="width: 400px; margin: auto;margin-top: 200px">
 		<div class="form-group">
 			<label for="exampleInputEmail1">Username</label> <input type="text"
-				class="form-control" id="exampleInputEmail1"
-				aria-describedby="emailHelp" name="userName" value="${userName}"
+				class="form-control" id="exampleInputEmail1" required="required"
+				aria-describedby="emailHelp" name="userName"
+				value="${userName }"
 				placeholder="Enter username"> <small id="emailHelp"
 				class="form-text text-muted">We'll never share your email
 				with anyone else.</small>
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">Password</label> <input
-				type="password" name="password" class="form-control"
+				type="password" name="password" required="required" value="${password }" class="form-control"
 				id="exampleInputPassword1" placeholder="Password">
 		</div>
-		<input type="radio" name="userType" value="Student">Student <input
-			type="radio" name="userType" value="Professor">Professor <br>
+		<input type="radio" required="required" name="userType" value="Student">&nbsp;&nbsp;Student&nbsp;&nbsp;&nbsp;<input
+			type="radio" name="userType" value="Professor">&nbsp;&nbsp;Professor <br>
 		<br>
 
 		<button type="submit" class="btn btn-primary">Submit</button>
-		<br>
-		<br><c:out value = "${error}"/>${userName}${message}
-		<c:if test="${error!=null}">
-			<div class="alert alert-danger" role="alert">A simple danger
-				alert—check it out!</div>
+		<br> <br>
+		<c:if test="${error!=null }">
+			<div class="alert alert-danger" role="alert">${error}</div>
 		</c:if>
+
 
 	</form>
 </body>

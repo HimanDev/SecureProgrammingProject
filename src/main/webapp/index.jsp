@@ -11,7 +11,7 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <body>
-	<form method="post" action="/sp/UserController/verify"
+	<form method="post" action="/sp/verify"
 		style="width: 400px; margin: auto;margin-top: 200px">
 		<div class="form-group">
 			<label for="exampleInputEmail1">Username</label> <input type="text"
@@ -27,8 +27,7 @@
 				type="password" name="password" required="required" value="${password }" class="form-control"
 				id="exampleInputPassword1" placeholder="Password">
 		</div>
-		<input type="radio" required="required" name="userType" value="Student">Student <input
-			type="radio" name="userType" value="Professor">Professor <br>
+		
 		<br>
 
 		<button type="submit" class="btn btn-primary">Submit</button>

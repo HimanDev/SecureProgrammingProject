@@ -1,6 +1,8 @@
 package com.uta.sp.dao;
 
 import java.security.SecureRandom;
+import java.util.List;
+import java.util.Map;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -10,7 +12,9 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Test;
 
-import com.uta.sp.dto.User;
+import com.uta.sp.dto.Student;
+
+import junit.framework.Assert;
 
 class JdbcConnectionTest {
 
@@ -19,13 +23,37 @@ class JdbcConnectionTest {
     private static final int saltLen = 32;
     private static final int desiredKeyLen = 256;
 
+	@SuppressWarnings("deprecation")
 	@Test
-	void testConnection() {
-		UserDao connection=new UserDao();
-		User user= connection.getOne(null);
-		System.err.println(user.toString());
-		LOG.info("Test Log");
+	void psidTest() {
+		List<Map<String,Object>> studentAndGrade = new ProfessorDao().getStudentAndGrade(1,1);
+		Assert.assertTrue(studentAndGrade.size()>0);
+	}
+	
+	@Test
+	void testUpdate() {
+		int i= new UserDao().updateGrade(1,1,"K");
+		Assert.assertTrue(i>0);
 
+	}
+	
+	@Test
+	void studentGetOneTest() {
+		Student s=new Student();
+		s.setStudentId(1);
+		Student dbs=new StudentDao().getOne(s);
+		System.out.println(dbs.toString());
+		Assert.assertTrue(dbs!=null);
+		
+	}
+	@Test
+	void studentGetGrades() {
+		Student s=new Student();
+		s.setStudentId(1);
+		List<Map<String,Object>> selectGrade = new StudentDao().selectGrade(1, 1);
+		System.out.println(selectGrade.toString());
+		Assert.assertTrue(selectGrade.size()>0);
+		
 	}
 	
 	@Test

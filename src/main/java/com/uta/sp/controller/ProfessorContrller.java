@@ -43,8 +43,8 @@ public class ProfessorContrller extends HttpServlet {
 			if (session.getAttribute(Constants.SP_USERNAME) != null
 					&& Constants.SP_USERTYPE_PROFESSOR.equals(session.getAttribute(Constants.SP_USERTYPE))) {
 				ProfessorDao dao = new ProfessorDao();
-				Integer profID = new Integer(session.getAttribute(Constants.SP_USERID).toString());
-				List<Map<String, Object>> professorSemesterList = dao.getProfessorSemester(profID.intValue());
+				int profID = Integer.parseInt(session.getAttribute(Constants.SP_USERID).toString());
+				List<Map<String, Object>> professorSemesterList = dao.getProfessorSemester(profID);
 				request.setAttribute("data", professorSemesterList);
 				request.getRequestDispatcher("/professor_dashboard.jsp").forward(request, response);
 

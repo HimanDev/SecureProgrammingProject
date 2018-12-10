@@ -43,27 +43,43 @@ public class ProfessorDao extends JdbcConnection<Professor> {
 				professor.setEmail(resultSet.getString("EMAIL"));
 
 			}
-			closeConnection();
 
 		} catch (SQLException e) {
 			LOG.error(e.getMessage());
+		} finally {
+			if (resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					LOG.error(e.getMessage());
+				}
+			}
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				LOG.error(e.getMessage());
+			}
+			closeConnection();
 		}
 
 		return professor;
 	}
 
 	public List<Map<String, Object>> getProfessorSemester(int professorId) {
-		String query = "select  sub.name as SUB_NAME,sub.SUBJECT_ID,S.NAME,ps.PROFESSOR_SUBJECT_ID as PSID,s.SEMESTER_ID as SEM_ID\n" + 
-				"from  professor_subject ps inner join semester s on ps.semester_id=s.semester_id \n" + 
-				"inner join subject sub on sub.subject_id=ps.subject_id\n" + 
-				"where ps.professor_id="+professorId+" ;";
+		String query = "select  sub.name as SUB_NAME,sub.SUBJECT_ID,S.NAME,ps.PROFESSOR_SUBJECT_ID as PSID,s.SEMESTER_ID as SEM_ID\n"
+				+ "from  professor_subject ps inner join semester s on ps.semester_id=s.semester_id \n"
+				+ "inner join subject sub on sub.subject_id=ps.subject_id\n" + "where ps.professor_id=" + professorId
+				+ " ;";
 		return getMany(query);
 	}
 
-	public List<Map<String, Object>> getStudentAndGrade(int psid,int professorId) {
-		String query="select ss.STUDENT_SUBJECT_ID,ss.GRADE,s.*\n" + 
-				" FROM SGMS.student_subject ss inner join professor_subject ps on ss.professor_subject_id=ps.professor_subject_id\n" + 
-				"inner join student s on s.student_id=ss.student_id where ps.professor_subject_id="+psid+" and ps.professor_id="+professorId;
+	public List<Map<String, Object>> getStudentAndGrade(int psid, int professorId) {
+		String query = "select ss.STUDENT_SUBJECT_ID,ss.GRADE,s.*\n"
+				+ " FROM SGMS.student_subject ss inner join professor_subject ps on ss.professor_subject_id=ps.professor_subject_id\n"
+				+ "inner join student s on s.student_id=ss.student_id where ps.professor_subject_id=" + psid
+				+ " and ps.professor_id=" + professorId;
 		return getMany(query);
 	}
 
